@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/cpp
 {
-	"name": "C++",
+	"name": "OpenCV & CMake",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
@@ -11,7 +11,8 @@
 				"yzhang.markdown-all-in-one",
 				"mhutchie.git-graph",
 				"streetsidesoftware.code-spell-checker",
-				"cschlosser.doxdocgen"
+				"cschlosser.doxdocgen",
+				"SimpleToolsDev.opencv-image"
 			]
 		}
 	}

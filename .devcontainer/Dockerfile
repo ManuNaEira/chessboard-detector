@@ -20,5 +20,4 @@ RUN apt update \
     graphviz \
     doxygen \
     # The following are needed to enable OpenCV highgui module
-    libgtk2.0-dev \
     libgtk-3-dev

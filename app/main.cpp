@@ -1,23 +1,36 @@
-#include "opencv2/core/core.hpp"
-#include "opencv2/highgui/highgui.hpp"
-
-using namespace cv;
+#include <iostream>
+#include "opencv2/core.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/imgproc.hpp"
+#include "opencv2/calib3d.hpp"
 
 int main(int argc, char** argv) {
-    // Create a GUI window named "Output"
-    namedWindow("Output", 1);
+    cv::Mat grayImage = cv::imread(
+        "/workspaces/chessboard-detector/data/checkerboard_1.ppm",
+        cv::IMREAD_GRAYSCALE
+        );
 
-    // Initialize a 120x350 matrix of black pixels
-    Mat output = Mat::zeros(120, 350, CV_8UC3);
+    if (grayImage.empty()) {
+        std::cout << "Could not open or find the image!\n" << std::endl;
+        return -1;
+    }
 
-    // Write text on the matrix
-    putText(output, "Hello World :)", cvPoint(15, 70), FONT_HERSHEY_PLAIN, 3, cvScalar(0, 255, 0), 4);
+    std::vector<cv::Point2f> corners;
+    cv::Size patternSize(9, 6);
 
-    // Display the image
-    imshow("Output", output);
+    bool found = cv::findChessboardCorners(grayImage, patternSize, corners);
 
-    // Wait for the user to press any key
-    waitKey(0);
+    if (found) {
+        // Convert the grayscale image to a color image
+        cv::Mat colorImage;
+        cv::cvtColor(grayImage, colorImage, cv::COLOR_GRAY2BGR);
+        cv::drawChessboardCorners(colorImage, patternSize, cv::Mat(corners),
+            found);
+        // Write the image to the disk
+        cv::imwrite("detected_corners.jpg", colorImage);
+    } else {
+        std::cout << "Chessboard pattern not found!" << std::endl;
+    }
 
     return 0;
 }
