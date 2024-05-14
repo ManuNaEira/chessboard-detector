@@ -12,7 +12,8 @@
 				"mhutchie.git-graph",
 				"streetsidesoftware.code-spell-checker",
 				"cschlosser.doxdocgen",
-				"SimpleToolsDev.opencv-image"
+				"SimpleToolsDev.opencv-image",
+				"bierner.markdown-mermaid"
 			]
 		}
 	}

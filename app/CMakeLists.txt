@@ -23,4 +23,6 @@ target_link_libraries("executable" PRIVATE
     opencv_imgcodecs
     opencv_imgproc
     opencv_calib3d
+    "libharrisdetector"
+    "libcornerdebugger"
 )

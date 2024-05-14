@@ -1,6 +1,6 @@
 # Chessboard Detector <!-- omit in toc -->
 
-Repo experiment with different Chessboard corners detectors.
+Repo experiment with different Chessboard corners detectors in C++, with CMake & OpenCV.
 
 - [Usage](#usage)
   - [Debugging](#debugging)
@@ -19,18 +19,27 @@ Repo experiment with different Chessboard corners detectors.
 3. Build the target `executable` (defined in the `app/` directory), e.g. run the
    VSCode command **CMake: Build Target** and select the `executable` one.
 4. Run the built file, i.e. it is located in `build/bin/executable`. It should
-   produce the image `detected_corners.jpg` with the detected corners overlaid
-   on top of the input (gray scaled) image.
+   produce 3 samples images:
+   - `find_chessboard_corners.jpg` with the `cv::findChessboardCorners()` detected corners overlaid on
+   top of the input (gray scaled) image.
+   - `opencv_harris_corners.jpg` with the `cv::cornerHarris()` Harris corner detector output.
+   - `custom_harris_corners.jpg` with the detected corners from the plain-C++ custom implementation
+     from `src/harris`.Not detecting anything at the moment 😅.
 
 ### Debugging
 
 1. Set a breakpoint in the `app/main.cpp` file.
-2. At the bottom of VSCode, in the Status Bar, select executable as the default
+2. At the bottom of VSCode, in the Status Bar, select `executable` as the default
    target and click the debug button.
 3. The program execution should stop at the breakpoint previously set. BONUS:
    using the extension [OpenCV C++
    Image](https://marketplace.visualstudio.com/items?itemName=SimpleToolsDev.opencv-image)
-   we can easily visualize cv::Mat contents.
+   we can easily visualize `cv::Mat` contents.
+
+> BONUS you can find the source code for the OpenCV function you want to debug, e.g. the
+> `cv::cornerHarris()` function will be defined in the file
+> `build/_deps/opencv-src/modules/imgproc/src/corner.cpp` (after building), so that you can set a
+> breakpoint also in that source file to debug OpenCV code.
 
 ## Troubleshooting
 

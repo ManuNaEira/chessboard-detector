@@ -31,7 +31,8 @@ FetchContent_MakeAvailable(
     opencv
 )
 
-# add_subdirectory(src)
+add_subdirectory(src)
+
 if(COMPILE_UNIT_TESTS)
     add_subdirectory(tests)
 else()
